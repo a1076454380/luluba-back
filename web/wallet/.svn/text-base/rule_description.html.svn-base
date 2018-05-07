@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>规则说明-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+<header class="header">
+    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+    <h5>规则说明</h5>
+</header>
+
+<ul class="list_con box-size rule_des" >
+    <li><a href="rule_withdraw.html" class="icon iconfont icon-arrow-right">提现规则</a></li>
+</ul>
+
+<script src="../../js/common.min.js"></script>
+<script src="../../js/m.js"></script>
+</body>
+</html>

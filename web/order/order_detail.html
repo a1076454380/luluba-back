@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>订单详情-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<body style="background-color:#f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>订单详情</h5>
+		</header>
+		<section class="grab">
+		    <div class="top">
+		        <h6>{{list.appointmentStatus | yyue}}</h6>
+		        <div class="time">
+		           {{list.createTime}}用车
+		        </div>
+		    </div>
+		    <ul class="order_list box-size clearfix">
+		        <li>
+		            <div>
+		                <p>
+		                    订单信息
+		                </p>
+		                <p><em>起点:</em>{{list.orderStart}}</p>
+		                <p><em>终点:</em>{{list.orderEnd}}</p>
+		                <p><em>用车人姓名:</em>{{list.userName}}</p>
+		                <p><em>用车人电话:</em><a :href="['tel:'+list.userPhone]" class="phone">{{list.userPhone}}</a></p>
+		                <p><em>是否同意拼车:</em>
+		                	<a class="phone">{{list.appointmentStatus | pin}}</a>
+		                </p>
+		                <p><em>选择车型:</em>{{list.carType | mytype}}</p>
+		                <p><em>货重:</em>{{list.orderWeight}}吨</p>
+		                <p><em>额外需求:</em>
+		                	{{list.orderAddition}}
+		                </p>
+		                <p><em>订单备注:</em>{{list.orderRemark}}</p>
+		                <p><em>订单地图:</em><a href="../map03.html" class="phone">点击查看</a></p>
+		            </div>
+		        </li>
+		        <li>
+		            <div>
+		                订单金额 <span class="lv_money">{{list.price}}元</span>
+		            </div>
+		        </li>
+		    </ul>
+		</section>
+	</div>
+<script src="../../js/common.min.js"></script>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/queryPojoByOrderId",
+					async:false,
+					dataType:'json',
+					data:{
+						orderId:localStorage.getItem('orderId')
+					},
+					success:function(res){
+						console.log(res)
+						that.list=res.data
+						localStorage.setItem('mapstart',res.data.orderStart)
+						localStorage.setItem('mapend',res.data	.orderEnd)
+					}
+				});
+			},
+			noorder:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/updateByOrderStatusDriver",
+					async:false,
+					dataType:'json',
+					data:{
+						orderId:localStorage.getItem('orderId')
+					},
+					success:function(res){
+						window.location.href='../index.html'
+					}
+				});
+			},
+			okorder:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/updateByOrderStatusFinish",
+					async:false,
+					dataType:'json',
+					data:{
+						orderId:localStorage.getItem('orderId'),
+						incomeMoney:that.list.price,
+						driverId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						window.location.href='../meau/my_trips.html'
+					}
+				});
+			}
+		},
+		filters:{
+			mytype:function(value){
+				switch (value){
+					case '1':
+					return '小面包车'
+						break;
+						case '2':
+					return '中面包车'
+						break;
+						case '3':
+					return '小货车'
+						break;
+						case '4':
+					return '中型平板'
+						break;
+						case '5':
+					return '中型厢货'
+						break;
+					default:
+					return '不限'
+						break;
+				}
+			},
+			yyue:function(value){
+				if(value==4||value==6){
+					return '预约单'
+				}else{
+					return '普通单'
+				}
+			},
+			pin: function(value) {
+						if(value == 6 || value == 7) {
+							return '小单拼车'
+						} else {
+							return '整车出行'
+						}
+					}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>模式设置-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/mobiscroll.css">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+     <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+	    <header class="header">
+	        <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+	        <h5>模式设置</h5>
+	    </header>
+	
+	    <section class="js_mode box-size">
+	        <h5 class="mode_line">听单类型</h5>
+	
+	        <div class="mode_switch">
+	            <a href="javascript:;" @click="tab('shi')">实时</a>
+	            <a href="javascript:;" @click="tab('yu')">预约</a>
+	            <a href="javascript:;" @click="tab('all')">全部</a>
+	        </div>
+	
+	
+	
+	    </section>
+	
+	    <div class="car_mode box-size mode_btn">
+	        <div class="btn">
+	            <a href="javascript:void(0);" class="now" @click="mysubmit">保存设置</a>
+	        </div>
+	    </div>
+    </div>
+    <script src="../../js/common.min.js"></script>
+    <script src="../../js/mobiscroll.js"></script>
+    <script src="../../js/m.js"></script>
+</body>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			
+		},
+		methods:{
+			tab:function(type){
+				localStorage.setItem('tingtype',type)
+			},
+			mysubmit:function(){
+				window.location.href='../index.html'
+			}
+		}
+	})
+</script>
+</html>

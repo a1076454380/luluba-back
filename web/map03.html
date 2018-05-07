@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>消息通知-陆陆捌车主</title>
+    <link href="../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../css/m.debug.css">
+    <script src="../js/flexible.js"></script>
+    <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=e8d613b264dcd6ca83d12f759c9690ed"></script>
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+</head>
+<style type="text/css">
+	.active h5{color: #f16621!important;}
+	.active p{color: #f16621!important;}
+	#l-map,#app{height: 100%;}
+</style>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>地图查看</h5>
+		</header>
+		<div id="l-map"></div>
+			<div id="panel"></div>
+	</div>
+<script src="../js/common.min.js"></script>
+<script src="../js/m.js"></script>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			
+		},
+		mounted:function(){
+			var map = new AMap.Map('l-map', {
+						zoom: 15,
+						center: [116.39, 39.9]
+					});
+					AMap.service('AMap.Driving', function() { //回调函数
+						//实例化Driving
+						driving = new AMap.Driving({
+//							city: '北京市'
+						});
+						var driving = new AMap.Driving({
+							map: map,
+							panel: "panel"
+						});
+						driving.search([{
+							keyword: localStorage.getItem('mapstart')
+						}, {
+							keyword: localStorage.getItem('mapend')
+						}], function(status, result) {
+							console.log(result.routes[0])
+						});
+					})
+		}
+	})
+</script>
+</body>
+</html>

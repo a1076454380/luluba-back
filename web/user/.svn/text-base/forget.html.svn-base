@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>忘记密码-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+</head>
+<body style="background-color:#fff;">
+	<header class="header">
+        <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+        <h5>忘记密码</h5>
+   </header>
+   
+   <section class="loginBox forgrt_pwd">
+        <div class="item box-size">
+            <i class="icon iconfont icon-phone"></i>
+            <input id="js_username" class="input_b username box-size" type="text" placeholder="手机号" />
+            <i class="icon iconfont icon-cuowu"></i>
+        </div>
+        <div class="item box-size">
+            <i class="icon iconfont icon-pwd"></i>
+            <input id="js_password" class="input_b password box-size" type="text" placeholder="请输入短信验证码" />
+            <a href="javascript:;" id="js_code" class="disabled">验证码</a>
+        </div>
+        <div class="item box-size">
+            <a href="../index.html"><input class="input_login disabled" type="submit" value="重置密码" id="js_reset" /></a>
+        </div>
+    </section>
+	<script src="../../js/common.min.js"></script>
+	<script src="../../js/m.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="XXX">
+		<meta name="keywords" content="XXX">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="applicable-device" content="mobile">
+		<title>货到家车主加盟-陆陆捌车主</title>
+		<link href="../../favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="../../css/m.debug.css">
+		<script src="../../js/flexible.js"></script>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body style="background-color:#fff;">
+		<header class="header">
+			<a class="icon iconfont icon-close js_back js_sel" href="javascript:history.back();"></a>
+			<h5>货到家车主加盟</h5>
+		</header>
+		<form action="" method="post" enctype="multipart/form-data">
+			<ul class="list_con box-size">
+				<input type="hidden" name="driverPhone" id="driverPhone" value="" data-name="手机号为空请返回上一页重试" />
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p>姓名</p>
+						<input type="text" placeholder="请输入真实姓名" name="driverName" id='driverName' data-name="姓名不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 16%;">居住地</p>
+						<input type="text" placeholder="请输入您所在的城市" name="city" data-name="居住地不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 16%;">推荐人</p>
+						<input type="text" placeholder="请输入您推荐人编号或姓名没有写无" name="lpromoterName" data-name="推荐人不能为空,没有推荐人请填写'无'">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width:45%;">推荐人手机号</p>
+						<input type="text" placeholder="请输入您推荐人手机号没有写无" name="lpromoterPhone" data-name="推荐人不能为空,没有推荐人请填写'无'">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 25%;">身份证号</p>
+						<input type="text" placeholder="请输入身份证号" name="driverCard" data-name="身份证号不能为空">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>身份证正面</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img01">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath1" name="driverCardFrontImg" data-name="身份证正面照不能为空" capture="camera">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>身份证背面</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img02">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath2" name="driverCardBackImg" data-name="身份证背面照不能为空" capture="camera">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>手持身份证</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img03">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath3" name="driverCardHandImg" data-name="手持身份证照不能为空" capture="camera">
+					</a>
+				</li>
+
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 16%;">车牌号</p>
+						<input type="text" placeholder="请输入车牌号码" name="carNumber" data-name="车牌号不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 35%;">车辆所有人</p>
+						<input type="text" placeholder="行驶证上的车辆所有人" name="carOwner" data-name="车辆所有人不能为空">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>车辆照片（请提供车辆正面照片）</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img04">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath4" name="carFrontImg" data-name="车辆照片不能为空" capture="camera">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>车辆照片（请提供车辆侧面照片）</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img05">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath5" name="carSideImg" data-name="车辆侧面照片不能为空" capture="camera">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>驾驶证</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img06">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath6" name="carLicenseImg" data-name="驾驶证不能为空" capture="camera">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:void(0);">
+						<p>行驶证</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img07">
+					</span>
+						</div>
+						<input class="input_btn" type="hidden" id="picPath7" name="carDrivingImg" data-name="行驶证不能为空">
+					</a>
+				</li>
+				<li class="file_info cx">
+					<a href="javascript:void(0);" class="icon iconfont icon-arrow-right">
+						请选择车型
+						<span id="cartype">
+							请选择车型
+						</span>
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 40%;">车辆品牌</p>
+						<input type="text" placeholder="请输入车辆品牌" name="carName" data-name="车辆品牌不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 40%;">车辆颜色</p>
+						<input type="text" placeholder="请输入车辆颜色" name="carColor" data-name="车辆颜色不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p>载重</p>
+						<input type="number" placeholder="请输入车辆载重量" name="carWeight" data-name="载重不能为空">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:void(0);">
+						<p style="width: 16%;">长宽高</p>
+						<input type="text" placeholder="长*宽*高(3*4*5)" name="carLength" data-name="长宽高不能为空">
+					</a>
+				</li>
+			</ul>
+			<a href="javascript:void(0)" class="js_submit">提交认证</a>
+			<div class="sex_cover"></div>
+			<div class="sex_layer box-size">
+				<h5>请选择车型</h5>
+				<div class="sex_sel">
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript">
+			$(function() {
+				$('#driverPhone').val(localStorage.getItem('drivephone'))
+				$('.cx').click(function() {
+					$('.sex_layer').show()
+				})
+				$('.sex_sel').on('click', 'input[name="carType"]', function() {
+					$('.sex_layer').hide()
+					$('#cartype').html($('.cartype').eq($('input[name="carType"]').index(this)).html())
+				})
+				$('form').attr('action', localStorage.getItem('myurl') + '/insertSelectiveBydriver')
+				$('.js_submit').click(function() {
+					var boo = true
+					$('input').each(function() {
+						if($(this).val() == '') {
+							alert($(this).attr('data-name'))
+							boo = false
+						}
+					})
+					if(!(/^(\S+)\*(\S+)\*(\S+)$/).test($("input[name='carLength']").val())) {
+						alert('车辆宽高格式类似(4*5*6),注意空格!!');
+						boo = false
+					}
+					if(boo == true) {
+						plus.nativeUI.showWaiting("正在提交数据,不要关闭页面!!");
+						$('form').ajaxSubmit({
+							type: 'post',
+							url: localStorage.getItem('myurl') + '/insertSelectiveBydriver',
+							success: function(res) {
+								alert(res)
+								plus.nativeUI.closeWaiting();
+								if(res.msg == 'OK') {
+									localStorage.setItem('driverName', $('#driverName').val())
+									window.location.href = '../../index.html'
+								} else {
+									alert(res.msg)
+								}
+							},
+							error:function(err){
+								alert(localStorage.getItem('myurl') + '/insertSelectiveBydriver')
+								console.log(error)
+							}
+						})
+					}
+				})
+				setTimeout(function() {
+					$.ajax({
+						type: "get",
+						url: localStorage.getItem('myurl') + "/queryuserCarsouelAll",
+						async: true,
+						dataType: 'json',
+						success: function(res) {
+							for(var i = 1; i < res.data.length; i++) {
+								$('.sex_sel').append("<p><label for='cx1' class='cartype'>" + res.data[i].carouselName + "</label><input type='radio' name='carType' id='cx1' value='" + res.data[i].carouselId + "'></p>")
+							}
+						}
+					});
+				}, 500)
+				$('form').on('click', 'img', function() {
+					localStorage.setItem('imgid', $(this).attr('id'))
+					localStorage.setItem('inputid', $(this).parent().parent().next().attr('id'))
+					var btnArray = [{
+						title: "照相机"
+					}, {
+						title: "相册"
+					}]; //选择按钮  1 2 3
+					plus.nativeUI.actionSheet({
+							title: "请选择",
+							cancel: "取消", // 0
+							buttons: btnArray
+						},
+						function(e) {
+							var index = e.index; // 
+							switch(index) {
+								case 1:
+									//写自己的逻辑
+									camera();
+									break;
+								case 2:
+									album();
+									break;
+							}
+						});
+				})
+				//	相机上传
+				function camera() {
+					var cmr = plus.camera.getCamera();
+					cmr.captureImage(function(p) {
+						//成功
+						plus.io.resolveLocalFileSystemURL(p, function(entry) {
+							var img_name = entry.name; //获得图片名称
+							var img_path = entry.toLocalURL(); //获得图片路径
+							$("#" + localStorage.getItem('imgid') + "").attr('src',img_path);
+							upload_img(img_path);
+						}, function(e) {
+							alert("读取拍照文件错误：" + e.message);
+						});
+
+					}, function(e) {
+						alert("失败：" + e.message);
+					}, {
+						filename: '_doc/camera/',
+						index: 1
+					}); //  “_doc/camera/“  为保存文件名
+				}
+				//	相册上传
+				function album() {
+					plus.gallery.pick(function(path) {
+						upload_img(path);
+						$("#" + localStorage.getItem('imgid') + "").attr('src',path);
+					}, function(e) {
+						alert("取消选择图片");
+					}, {
+						filter: "image"
+					});
+				}
+
+				//初始上传地址  
+				var server = localStorage.getItem('myurl') + "/uploadDriverImage"; // 学员测试使用
+				var files = []; //图片存放的数组 可以上传一个，或者多个图片 
+				//上传图片
+				function upload_img(p) {
+					var n = p.substr(p.lastIndexOf('/') + 1);
+					files.push({
+						name: "uploadkey",
+						path: p
+					});
+					//开始上传
+					start_upload();
+				}
+
+				//开始上传
+				function start_upload() {
+					if(files.length <= 0) {
+						plus.nativeUI.alert("没有添加上传文件！");
+						return;
+					}
+					//原生的转圈等待框
+					var wt = plus.nativeUI.showWaiting();
+					var task = plus.uploader.createUpload(server, {
+							method: "POST"
+						},
+						function(t, status) { //上传完成
+							if(status == 200) {
+								//资源
+								var responseText = t.responseText;
+								//转换成json
+								var json = eval('(' + responseText + ')');
+								//上传文件的信息
+								var files = json.data;
+								$("#" + localStorage.getItem('inputid') + "").val(files)
+								wt.close();
+							} else {
+								alert("上传失败：" + status);
+								//关闭原生的转圈等待框
+								wt.close();
+							}
+						});
+					task.addData("uid", getUid());
+					for(var i = 0; i < files.length; i++) {
+						var f = files[i];
+						task.addFile(f.path, {
+							key: f.name
+						});
+					}
+					task.start();
+				}
+				// 产生一个随机数
+				function getUid() {
+					return Math.floor(Math.random() * 100000000 + 10000000).toString();
+				}
+			})
+		</script>
+	</body>
+
+</html>

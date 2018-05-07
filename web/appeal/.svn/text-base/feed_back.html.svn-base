@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="XXX">
+		<meta name="keywords" content="XXX">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content=" black " />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="applicable-device" content="mobile">
+		<title>意见反馈-陆陆捌车主</title>
+		<link href="../../favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="../../css/m.debug.css">
+		<script src="../../js/flexible.js"></script>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+	</head>
+
+	<body style="background-color: #f2f3f4;">
+		<div id="app">
+			<!--头部-->
+			<header class="header">
+				<a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+				<h5>意见反馈</h5>
+			</header>
+
+			<section class="order_sure re_mark">
+				<textarea placeholder="留下您的意见与建议吧" rows="5" class="box-size" id="r-mark_txt" v-model="mytext"></textarea>
+			</section>
+			<a href="javascript:void(0)" class="js_withdraw js_submit_feed" @click="myajax">提交反馈</a>
+		</div>
+		<script src="../../js/common.min.js"></script>
+		<script src="../../js/m.js"></script>
+		<script type="text/javascript">
+			var myvue = new Vue({
+				el: '#app',
+				data: {
+					mytext: ''
+				},
+				methods: {
+					myajax: function() {
+						var that = this
+						if(that.mytext!=''){
+							$.ajax({
+								type: "post",
+								url: localStorage.getItem('myurl') + "/updateByOrderStatusProcess",
+								async: false,
+								dataType: 'json',
+								data: {
+									suggestContent:that.mytext,
+									userId:localStorage.getItem('dirveid')
+								},
+								success: function(res) {
+									console.log(res)
+								}
+							});
+						}else{
+							alert('意见内容不能为空')
+						}
+					}
+				},
+				mounted: function() {
+
+				}
+			})
+		</script>
+	</body>
+
+</html>

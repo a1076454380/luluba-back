@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>被投诉车费有问题-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+</head>
+<body style="background-color:#f2f3f4;">
+<header class="header">
+    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+    <h5>被投诉车费有问题</h5>
+</header>
+
+<section class="app_rule box-size">
+    <p>被乘客投导致司机扣款，如符合如下条件，可以进行申诉。</p>
+    <br/>
+    <p>申诉条件（需同时满足）：</p>
+    <p>1.被乘客投诉的为题为绕路、未坐车产生费用、未及时结束计费、提前计费、额外添加附加费五类费用类问题；</p>
+    <p>2.被乘客投诉后，导致司机被扣款的投诉订单；</p>
+    <p>3.仅支持最近7天内的乘客投诉订单申诉；</p>
+    <br/>
+    <p>申诉处理：</p>
+    <p>司机申诉后24小时内，将得到平台处理结果；</p>
+    <p>如果对平台处理结果不满，可发起二次投诉，由人工核实判定责任；</p>
+    <p>申诉通过后的订单，平台将于48小时内，补发扣款，并恢复当日服务分。</p>
+</section>
+
+<script src="../../js/common.min.js"></script>
+<script src="../../js/m.js"></script>
+</body>
+</html>

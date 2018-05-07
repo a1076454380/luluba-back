@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="XXX">
+		<meta name="keywords" content="XXX">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content=" black " />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="applicable-device" content="mobile">
+		<title>货到家车主加盟-陆陆捌车主</title>
+		<link href="../../favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="../../css/m.debug.css">
+		<script src="../../js/flexible.js"></script>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body style="background-color:#fff;">
+		<header class="header">
+			<a class="icon iconfont icon-close js_back js_sel" href="javascript:history.back();"></a>
+			<h5>货到家车主加盟</h5>
+		</header>
+		<form action="" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="driverId" id="driverId" value="" />
+			<ul class="list_con box-size">
+				<li class="file_info">
+					<a href="javascript:;">
+						<p style="width: 16%;">车牌号</p>
+						<input type="text" placeholder="请输入车牌号码" name="carNumber">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:;">
+						<p style="width: 35%;">车辆所有人</p>
+						<input type="text" placeholder="行驶证上的车辆所有人" name="carOwner">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:;">
+						<p>车辆照片（请提供车辆正面照片）</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img04">
+					</span>
+						</div>
+						<input class="input_btn" type="file" onchange="change('img04','picPath4')" id="picPath4" name="picPath4">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:;">
+						<p>车辆照片（请提供车辆侧面照片）</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img05">
+					</span>
+						</div>
+						<input class="input_btn" type="file" onchange="change('img05','picPath5')" id="picPath5" name="picPath5">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:;">
+						<p>驾驶证</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img06">
+					</span>
+						</div>
+						<input class="input_btn" type="file" onchange="change('img06','picPath6')" id="picPath6" name="picPath6">
+					</a>
+				</li>
+				<li class="file_upload">
+					<a href="javascript:;">
+						<p>行驶证</p>
+						<div>
+							<span class="pic">
+						<img src="../../images/pic/1.jpg" id="img07">
+					</span>
+						</div>
+						<input class="input_btn" type="file" onchange="change('img07','picPath7')" id="picPath7" name="picPath7">
+					</a>
+				</li>
+				<li class="file_info cx">
+					<a href="javascript:;" class="icon iconfont icon-arrow-right">
+						请选择车型 <span></span>
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:;">
+						<p style="width: 40%;">车辆品牌</p>
+						<input type="text" placeholder="请输入车辆品牌" name="carName">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:;">
+						<p style="width: 40%;">车辆颜色</p>
+						<input type="text" placeholder="请输入车辆颜色" name="carColor">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:;">
+						<p>载重</p>
+						<input type="number" placeholder="请输入车辆载重量" name="carWeight">
+					</a>
+				</li>
+				<li class="file_info">
+					<a href="javascript:;">
+						<p style="width: 16%;">长宽高</p>
+						<input type="text" placeholder="请输入车辆可装货区域的长*宽*高" name="carLength">
+					</a>
+				</li>
+			</ul>
+			<a href="javascript:void(0)" class="js_submit">提交认证</a>
+			<div class="sex_cover"></div>
+			<div class="sex_layer box-size">
+				<h5>请选择车型</h5>
+				<div class="sex_sel">
+				</div>
+			</div>
+		</form>
+		<script type="text/javascript">
+			function change(picId, fileId) {
+				var pic = document.getElementById(picId);
+				var file = document.getElementById(fileId);
+				if(window.FileReader) { //chrome,firefox7+,opera,IE10,IE9，IE9也可以用滤镜来实现
+					oFReader = new FileReader();
+					oFReader.readAsDataURL(file.files[0]);
+					oFReader.onload = function(oFREvent) {
+						pic.src = oFREvent.target.result;
+					};
+
+				} else if(document.all) { //IE8-
+					file.select();
+					var reallocalpath = document.selection.createRange().text //IE下获取实际的本地文件路径
+					if(window.ie6) pic.src = reallocalpath; //IE6浏览器设置img的src为本地路径可以直接显示图片
+					else { //非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现，IE10浏览器不支持滤镜，需要用FileReader来实现，所以注意判断FileReader先
+						pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+						pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='; //设置img的src为base64编码的透明图片，要不会显示红xx
+					}
+				} else if(file.files) { //firefox6-
+					if(file.files.item(0)) {
+						url = file.files.item(0).getAsDataURL();
+						pic.src = url;
+					}
+				}
+			}
+			$(function() {
+				$('#driverPhone').val(localStorage.getItem('drivephone'))
+				$('.cx').click(function() {
+					$('.sex_layer').show()
+				})
+				$('.sex_sel').on('change','input[name="carType"]',function(){
+					$('.sex_layer').hide()
+				})
+				$('form').attr('action', localStorage.getItem('myurl') + '/insertDriverCarAdd')
+				$('#driverId').val(localStorage.getItem('dirveid'))
+				$('.js_submit').click(function() {
+					var boo=true
+					$('input').each(function(){
+						if($(this).val()==''){
+							boo=false
+						}
+					})
+					if(!(/^(\S+)\*(\S+)\*(\S+)$/).test($("input[name='carLength']").val())){
+						alert('车辆宽高格式类似(4*5*6)');
+						boo=false
+					}
+					if(boo){
+						$('form').ajaxSubmit({
+							type: 'post',
+							url: localStorage.getItem('myurl') + '/insertDriverCarAdd',
+							success: function(res) {
+								window.location.href='../state/review.html'
+							}
+						})
+					}else{
+						alert('车辆信息不完整')
+					}
+					
+				})
+				$.ajax({
+					type:"get",
+					url:localStorage.getItem('myurl')+"/queryuserCarsouelAll",
+					async:true,
+					dataType:'json',
+					success:function(res){
+						for(var i=0;i<res.data.length;i++){
+							$('.sex_sel').append("<p><label for='cx1'>"+res.data[i].carouselName+"</label><input type='radio' name='carType' id='cx1' value='"+res.data[i].carouselId+"'></p>")
+						}
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

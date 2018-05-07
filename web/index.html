@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="XXX">
+		<meta name="keywords" content="XXX">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content=" black " />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="applicable-device" content="mobile">
+		<title>首页-陆陆捌车主</title>
+		<link href="../favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="../css/m.debug.css">
+		<script src="../js/flexible.js"></script>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+	</head>
+	<style type="text/css">
+		#app {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.js_tips a {
+			border-top: 2px solid #fe5722;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+		
+		.fade-enter-active,
+		.fade-leave-active {
+			left: 0;
+			transition: all .3s;
+		}
+		
+		.fade-enter,
+		.fade-leave-to {
+			left: -100%;
+		}
+	</style>
+
+	<body class="navslide_meau">
+		<div id="app">
+			<!--侧栏菜单-->
+			<transition name="fade">
+				<div class="mceng" v-if="showbo" @click="showboo">
+					<nav class="sidenav">
+						<div class="meau_advater" v-show='driverId==null'>
+							<a class="pic" href="../index.html">
+								<img src="../images/driver_icon.png">
+							</a>
+							<a href="../index.html" id="driver_name">立即登录</a>
+						</div>
+						<div class="meau_advater" v-show='driverId!=null'>
+							<a class="pic" href="javascript:;">
+								<img src="../images/driver_icon.png">
+							</a>
+							<a href="javascript:;" id="driver_name">{{driverName}}</a>
+						</div>
+						<div class="meau_money clearfix">
+							<a href="meau/my_wallet.html" class="icon iconfont icon-qianbao">我的钱包</a>
+							<a href="meau/my_trips.html" class="icon iconfont icon-xingcheng">我的行程</a>
+						</div>
+
+						<ul class="meau_list">
+							<li>
+								<a href="meau/my_car.html"><i class="icon iconfont icon-cheliang"></i>我的车辆</a>
+							</li>
+							<li>
+								<a href="meau/share.html"><i class="icon iconfont icon-tuijian"></i>我要分享</a>
+							</li>
+							<li>
+								<a href="meau/client_contact.html"><i class="icon iconfont icon-kefu"></i>客服中心</a>
+							</li>
+							<li>
+								<a href="appeal/appeal_list.html"><i class="icon iconfont icon-shensu"></i>申诉中心</a>
+							</li>
+						</ul>
+						<ul class="meau_list">
+							<li>
+								<a href="meau/set.html"><i class="icon iconfont icon-shezhi"></i>设置</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<transition/>
+				<!--主内容-->
+				<section class="slidenav_con">
+					<header class="header">
+						<a class='menu-button icon iconfont icon-geren toggle js_back' href="javascript:;" @click="showboo"></a>
+						<h5>陆陆捌货到家</h5>
+						<a class='icon iconfont icon-xiaoxi fr' href="mes.html"></a>
+					</header>
+					<div class="index_score">
+						<div class="data_score score clearfix">
+							<p>
+								<a href="meau/my_trips.html" class="da">
+									<block>{{ordernum}}</block>今日接单</a>
+							</p>
+							<p>
+								<a href="meau/my_wallet.html" class="da">
+									<block>{{ordermoney}}</block>今日收入</a>
+							</p>
+							<p>
+								<block>{{ordergood}}</block>我的点赞</p>
+						</div>
+					</div>
+					<p class="ordero" v-show='mylist.length==0'>
+						暂时没有符合您要求的订单或者您没有选择使用的车辆,请前去我的车辆查看车辆状态
+					</p>
+					<div class="js_tips box-size js_tips1" v-show='mylist.length>0'>
+						<a href="javascript:void(0)" class="box-size" v-for="val in mylist" @click="orderdetail(val.orderId)">
+							<h5>未接订单</h5>
+							<span class="box-big">
+		           			<span class="box-title">
+		           				起点:
+		           			</span>
+							<span>{{val.orderStart}}</span>
+							</span>
+							<span class="box-big">
+		           			<span class="box-title">
+		           				终点:
+		           			</span>
+							<span>{{val.orderEnd}}</span>
+							</span>
+							</span>
+							<span class="box-group">
+						<span class="box-big">
+		           			<span class="box-title">
+		           				时间:
+		           			</span> {{val.createTime}}
+							</span>
+							<span class="box-small">
+		           			<span class="box-title">
+		           				货物重量:
+		           			</span> {{val.orderWeight}}吨
+							</span>
+							<span class="box-small">
+		           			<span class="box-title">
+		           				运费:
+		           			</span> {{val.price}}
+							</span>
+						</a>
+					</div>
+					<div class="car_mode box-size index_btn">
+						<div class="btn">
+							<a href="mode/mode_check.html" class="book icon iconfont icon-shezhi">
+								听单模式({{typetext}})
+							</a>
+							<a href="javascript:;" class="now" @click="go">点击出车</a>
+							<a href="javascript:;" class="book icon iconfont icon-shezhi sc" @click="back">收车</a>
+						</div>
+					</div>
+					<audio src="../images/pic/music.mp3" preload="auto" id="bgMusic"></audio>
+				</section>
+		</div>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.min.js"></script>
+		<script src="../js/m.js"></script>
+		<script>
+			var myvue = new Vue({
+				el: '#app',
+				data: {
+					driverId: localStorage.getItem('dirveid'),
+					driverName: localStorage.getItem('driverName'),
+					driverPhone: localStorage.getItem('driverPhone'),
+					ordernum: 0,
+					ordermoney: 0,
+					list: [],
+					tingtype: 'all',
+					ordergood: 0,
+					typetext: '全部',
+					dajax: true,
+					mylist: [],
+					mygo: '',
+					showbo: false
+				},
+				methods: {
+					showboo: function() {
+						this.showbo = !this.showbo
+					},
+					go: function() {
+						var that = this
+						$.ajax({
+							type: "get",
+							url: localStorage.getItem('myurl') + "/selectRealTimeOrder",
+							async: true,
+							dataType: 'json',
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							success: function(res) {
+								if(res.data.length > 0) {
+									var audio = document.getElementById("bgMusic");
+									//播放(继续播放)
+									audio.play();
+									var is_playFinish = setInterval(function() {
+										if(audio.ended) {
+											localStorage.setItem('ordedid', res.data[0].orderId)
+											window.location.href = 'grab.html'
+											window.clearInterval(is_playFinish)
+										}
+									}, 10)
+								}
+							}
+						});
+						that.mygo = setTimeout(function() {
+							that.go()
+						}, 500)
+					},
+					back: function() {
+						clearTimeout(this.mygo)
+					},
+					myajax: function() {
+						var that = this
+						$.ajax({
+							type: "get",
+							url: localStorage.getItem('myurl') + "/queryToday",
+							async: true,
+							dataType: 'json',
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							success: function(res) {
+								that.ordernum = res.data
+							}
+						});
+						$.ajax({
+							type: "get",
+							url: localStorage.getItem('myurl') + "/queryTodayMoney",
+							async: true,
+							dataType: 'json',
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							success: function(res) {
+								that.ordermoney = res.data
+							}
+						});
+						$.ajax({
+							type: "get",
+							url: localStorage.getItem('myurl') + "/queryDriverByPhoneFlower",
+							async: true,
+							dataType: 'json',
+							data: {
+								driverPhone: localStorage.getItem('driverPhone')
+							},
+							success: function(res) {
+								that.ordergood = res.data
+
+							}
+						});
+					},
+					orderdetail: function(id) {
+						localStorage.setItem('ordedid', id)
+						window.location.href = 'grab.html'
+					},
+					order: function() {
+						if(localStorage.getItem('tingtype') == null) {
+							localStorage.setItem('tingtype', 'all')
+						}
+						this.tingtype = localStorage.getItem('tingtype')
+						var that = this
+						if(that.tingtype == 'shi') {
+							$.ajax({
+								type: "get",
+								url: localStorage.getItem('myurl') + "/queryRealTime",
+								async: true,
+								dataType: 'json',
+								data: {
+									driverId: localStorage.getItem('dirveid')
+								},
+								success: function(res) {
+									if(res.status == 200) {
+										that.mylist = res.data
+									} else {
+										that.mylist = []
+									}
+
+									function plusReady() {
+										plus.nativeUI.closeWaiting();
+									}
+									if(window.plus) {
+										plusReady();
+									} else {
+										document.addEventListener('plusready', plusReady, false);
+									}
+								}
+							});
+						} else if(that.tingtype == 'yu') {
+							$.ajax({
+								type: "get",
+								url: localStorage.getItem('myurl') + "/queryAppointmentTime",
+								async: true,
+								dataType: 'json',
+								data: {
+									driverId: localStorage.getItem('dirveid')
+								},
+								success: function(res) {
+									if(res.status == 200) {
+										that.mylist = res.data
+									} else {
+										that.mylist = []
+									}
+
+									function plusReady() {
+										plus.nativeUI.closeWaiting();
+									}
+									if(window.plus) {
+										plusReady();
+									} else {
+										document.addEventListener('plusready', plusReady, false);
+									}
+								}
+							});
+						} else {
+							$.ajax({
+								type: "get",
+								url: localStorage.getItem('myurl') + "/queryByOrderStatus",
+								async: true,
+								dataType: 'json',
+								data: {
+									driverId: localStorage.getItem('dirveid')
+								},
+								success: function(res) {
+									if(res.status == 200) {
+										that.mylist = res.data
+									} else {
+										that.mylist = []
+									}
+
+									function plusReady() {
+										plus.nativeUI.closeWaiting();
+									}
+									if(window.plus) {
+										plusReady();
+									} else {
+										document.addEventListener('plusready', plusReady, false);
+									}
+								}
+							});
+						}
+						setTimeout(function() {
+							that.order()
+						}, 10000)
+					}
+				},
+				mounted: function() {
+					
+					localStorage.setItem('myurl', 'http://39.107.70.18/Transportation')
+					this.myajax()
+					this.order()
+					if(localStorage.getItem('tingtype') == 'shi') {
+						this.typetext = '实时'
+					} else if(localStorage.getItem('tingtype') == 'yu') {
+						this.typetext = '预约'
+					}
+					if(localStorage.getItem('driverPhone')!=null){
+						$.ajax({
+							type: "get",
+							url: localStorage.getItem('myurl') + "/queryLoginDriverByPhone",
+							async: false,
+							dataType: 'json',
+							data: {
+								driverPhone:localStorage.getItem('driverPhone')
+							},
+							success: function(res) {
+								console.log(res)
+								if(res.status != 200) {
+									alert('您的用户已被删除！！')
+									localStorage.clear()
+									window.location.href='../index.html'
+								}
+							}
+						});
+					}
+					var wgtVer = null;
+					//					获取当前应用版本
+					function plusReady() {
+						plus.nativeUI.showWaiting("正在加载数据");
+						plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+							wgtVer = inf.version;
+							$.ajax({
+								type: "get",
+								url: localStorage.getItem('myurl') + "/queryByversion",
+								dataType: 'json',
+								async: false,
+								success: function(res) {
+									plus.nativeUI.closeWaiting()
+									if(res.data.versionDriverCode != wgtVer) {
+										// 弹出提示信息对话框
+										plus.nativeUI.confirm("有新版本发布啦,是否立即下载??", function(e) {
+											if(e.index == 0) {
+												plus.runtime.openURL(res.data.versionAndroidDriverUploadUrl)
+											}else{
+												if(localStorage.getItem('dirveid') == null) {
+													window.location.href = '../index.html'
+													return;
+												}
+											}
+										});
+									}else{
+										if(localStorage.getItem('dirveid') == null) {
+											window.location.href = '../index.html'
+											return;
+										}
+									}
+								}
+							})
+						});
+					}
+					if(window.plus) {
+						plusReady();
+					} else {
+						document.addEventListener('plusready', plusReady, false);
+					}
+					setInterval(function() {
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/car/queryAllByDriverIdAndStatus",
+							async: true,
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							dataType: 'json',
+							success: function(res) {
+								if(res.data.length > 0) {
+									// 扩展API加载完毕，现在可以正常调用扩展API
+									// 获取客户端标识信息
+									var mydata = res.data[0]
+									$.ajax({
+										type: "post",
+										url: localStorage.getItem('myurl') + "/car/updateByStatusAndCarId",
+										async: true,
+										dataType: 'json',
+										data: {
+											carId: mydata
+										},
+										success: function(res) {
+											document.addEventListener("plusready", function() {
+												var info = plus.push.getClientInfo();
+												plus.push.createMessage('您的车辆审核已通过,请点击查看!');
+												// 添加监听从系统消息中心点击消息启动事件
+												plus.push.addEventListener("click", function(msg) {
+													window.location.href = 'meau/my_car.html'
+												}, false);
+											}, false);
+										}
+									});
+								}
+							}
+						});
+					}, 60000)
+				},
+			})
+		</script>
+	</body>
+
+</html>

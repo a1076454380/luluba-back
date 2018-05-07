@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>提现规则-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>提现规则</h5>
+		</header>
+		
+		<section class="devide_box box-size">
+		    <ul class="devide">
+		        <li>提现时间<span>{{list.reflectTimeDescription}}</span></li>
+		        <li>单日提现限额<span>{{list.reflectMoneyDay}}</span></li>
+		        <li>提现次数<span>当日最多{{list.reflectCount}}次</span></li>
+		        <li>手续费<span>{{list.reflectPerCent}}%</span></li>
+		    </ul>
+		
+		    <p>目前仅支持提现到支付宝。</p>
+		    <p>注册姓名与提现支付宝姓名必须一致。</p>
+		    <p>出现提现失败的师傅，请核查支付宝帐号以及姓名是否填写一致，并向支付宝咨询支付宝状态是否正常。</p>
+		</section>
+	</div>
+</body>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+					$.ajax({
+						type:"get",
+						url:localStorage.getItem('myurl')+"/income/queryAllReflectRule",
+						async:false,
+						dataType:'json',
+						success:function(res){
+							that.list=res.data
+							localStorage.setItem('reflectPerCent',res.data.reflectPerCent)
+							console.log(res)
+						}
+					})	
+			}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>我的车辆-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<style type="text/css">
+	.my_car div .pic{overflow: hidden;}
+</style>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>我的车辆</h5>
+		</header>
+		
+		<section class="my_car box-size">
+		    <div v-for="(val,index) in list">
+		        <h5>{{val.carName}}({{val.carColor}})</h5>
+		        <h6>{{val.carNumber}}</h6>
+		        <span class="pic">
+		            <img :src="val.carFrontImg | imgurl">
+		        </span>
+		        <p @click='active(val.carId)' v-show="val.approvalStaus==1">
+		            <input type="radio" :id="['del_car'+index]" name="car" v-mycheck='val.userCar'>
+		            <label :for="['del_car'+index]">使用当前车辆</label>
+		        </p>
+		        <i class="icon iconfont icon-approved" v-show="val.approvalStaus==1"></i>
+		        <i class="icon iconfont icon-shenheweitongguo" v-show="val.approvalStaus==2"></i>
+		        <i class="icon iconfont icon-shenhezhong" v-show="val.approvalStaus==0"></i>
+		    </div>
+	</section>
+	<a href="../user/add_car.html" class="js_withdraw add_car">+ 新增车辆</a>
+	</div>
+<script src="../../js/common.min.js"></script>
+<script src="../../js/m.js"></script>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/car/qyeryAllByDriverId",
+					async:false,
+					dataType:'json',
+					data:{
+						driverId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						console.log(res)
+						that.list=res.data
+					}
+				});
+			},
+			active:function(id){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/car/updateUserCarByCarId",
+					async:false,
+					dataType:'json',
+					data:{
+						carId:id,
+						driverId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						console.log(res)
+					}
+				});
+			}
+		},
+		mounted:function(){
+			this.myajax();
+			var that=this
+		},
+		filters:{
+			imgurl:function(value){
+				return localStorage.getItem('myurl')+'/'+value.substr(value.indexOf('uploadImg'))
+			}
+		},
+		directives:{
+			mycheck:{
+				inserted:function(el,status){
+					if(status.value==1){
+						el.setAttribute('checked','checked')
+					}
+				}
+			}
+		}
+	})
+</script>
+</body>
+</html>

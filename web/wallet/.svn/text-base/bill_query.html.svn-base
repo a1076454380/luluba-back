@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>账单查询-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/swiper.min.css">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<style type="text/css">
+	.js_bill_query,.total_money{display: none;}
+	.block{display: block;}
+</style>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>账单查询</h5>
+		</header>
+		
+		<section class="bill_query">
+		    <div class="tit">
+		        <a href="javascript:void(0);" :class="mytype=='1'?'active':''" @click="tab('1')">支出</a>
+		        <a href="javascript:void(0);" :class="mytype=='0'?'active':''" @click="tab('0')">收入</a>
+		    </div>
+		</section>
+		
+		<div class="swiper-container js_bill_query" :class="mytype=='1'?'block':''">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide" v-for="val in list">
+		            <div>
+		                <span><em>{{val.incomeMoney}}</em>元</span>
+		                <span>{{val.createTime}}</span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-button-next"></div>
+		</div>
+		<div class="swiper-container js_bill_query" :class="mytype=='0'?'block':''">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide" v-for="val in list01">
+		            <div>
+		                <span><em>{{val.spendMoney}}</em>元</span>
+		                <span>{{val.createTime}}</span>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-button-next"></div>
+		</div>
+		<div class="total_money" :class="mytype=='1'?'block':''">
+		    <p>盈利</p>
+		    <span>共盈利：<em>{{money}}</em>元</span>
+		</div>
+		<div class="total_money" :class="mytype=='0'?'block':''">
+		    <p>支出</p>
+		    <span>共支出：<em>{{money01}}</em>元</span>
+		</div>
+	</div>
+
+<script src="../../js/common.min.js"></script>
+<!--<script src="../../js/m.js"></script>-->
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[],
+			list01:[],
+			mytype:'1',
+			money:0,
+			money01:0
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				
+//					收入
+					$.ajax({
+						type:"get",
+						url:localStorage.getItem('myurl')+"/income/queryByDriverId",
+						async:false,
+						dataType:'json',
+						data:{
+							driverId:localStorage.getItem('dirveid')
+						},
+						success:function(res){
+							that.list=res.data
+							for(var i=0;i<res.data.length;i++){
+								that.money+=res.data[i].incomeMoney
+							}
+						}
+					});
+					$.ajax({
+						type:"get",
+						url:localStorage.getItem('myurl')+"/income/querySpendByDriverId",
+						async:false,
+						dataType:'json',
+						data:{
+							driverId:localStorage.getItem('dirveid')
+						},
+						success:function(res){
+							that.list01=res.data
+							for(var i=0;i<res.data.length;i++){
+								that.money01+=res.data[i].spendMoney
+							}
+						}
+					});		
+			},
+			tab:function(ype){
+				this.mytype=ype
+			}
+		},
+		mounted:function(){
+			this.myajax()
+			setTimeout(function(){
+				var mySwiper = new Swiper ('.swiper-container', {
+					    loop: true,
+					    // 如果需要前进后退按钮
+					    nextButton: '.swiper-button-next',
+					    prevButton: '.swiper-button-prev'
+				})
+			},1000)
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>申诉列表-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+     <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>申诉列表</h5>
+		</header>
+		<section class="appeal appeal_list" v-show="list.length>0">
+		    <div class="appeal_progess box-size" v-for="val in list">
+		        <a href="javascript:void(0)" class="icon iconfont icon-arrow-right" @click="complan(val.orderId)">
+		                        订单编号:{{val.orderId}}
+		            <span v-show="val.complianStatus==0">解决中</span>
+		            <span v-show="val.complianStatus==1">待解决</span>
+		        </a>
+		    </div>
+		</section>
+	</div>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/queryComplaintByDriverId",
+					async:false,
+					dataType:'json',
+					data:{
+						driverId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						that.list=res.data
+						console.log(res)
+					}
+				});
+			},
+			complan:function(id){
+				localStorage.setItem('orderId',id)
+				window.location.href='appeal_progess.html'
+			}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</body>
+</html>

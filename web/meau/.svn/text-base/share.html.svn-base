@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>分享-陆陆捌货到家</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+</head>
+<body class="list_body" style="background-color: #fff;">
+<!--头部-->
+<header class="header">
+    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+    <h5>分享</h5>
+</header>
+
+<section class="mail_detail box-size share_rule">
+    <h5>分享规则：</h5>
+
+    <p class="adr">您的地址：http://www.liuliufa.cn/</p>
+
+    <a href="javascript:;" class="js_share">分享</a>
+</section>
+
+<!--分享弹窗-->
+<div class="share_cover"></div>
+<div class="share_layer">
+    <div class="share_icon box-size">
+        <div class="jiathis_style_32x32">
+            <a class="jiathis_button_cqq"></a>
+            <a class="jiathis_button_weixin"></a>
+            <a class="jiathis_button_tsina"></a>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/common.min.js"></script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script src="../../js/m.js"></script>
+</body>
+</html>

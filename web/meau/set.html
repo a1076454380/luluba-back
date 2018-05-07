@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>设置-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+<header class="header">
+    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+    <h5>设置</h5>
+</header>
+<ul class="list_con box-size set_i" >
+    <li>
+        <a href="../appeal/feed_back.html" class="icon iconfont icon-arrow-right">意见反馈</a>
+    </li>
+    <li>
+        <a href="../meau/client_contact.html" class="icon iconfont icon-arrow-right">联系我们</a>
+    </li>
+    <li>
+        <a href="../appeal/user_about.html" class="icon iconfont icon-arrow-right">关于我们</a>
+    </li>
+</ul>
+
+<a href="javascript:;" class="js_login_out">退出登录</a>
+
+<div class="sel_cover"></div>
+<div class="sel_layer login_layer">
+    <h5>您确定要离开吗？</h5>
+    <div class="sel_btn box-size">
+        <a href="javascript:;" class="fl">取消</a>
+        <a href="javascript:void(0)" class="fr">确定</a>
+    </div>
+</div>
+
+<script src="../../js/common.min.js"></script>
+<script src="../../js/m.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.fr').click(function(){
+			localStorage.clear()
+			window.location.href='../../index.html'
+		})
+	})
+</script>
+</body>
+</html>

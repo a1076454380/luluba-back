@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>消息通知-陆陆捌车主</title>
+    <link href="../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../css/m.debug.css">
+    <script src="../js/flexible.js"></script>
+    <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<style type="text/css">
+	.active h5{color: #f16621!important;}
+	.active p{color: #f16621!important;}
+</style>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>消息通知</h5>
+		</header>
+		<div class="js_tips box-size">
+		    <a href="javascript:void(0)" class="box-size" v-for="val in list" @click="newdetail(val.userNewsId,val.messageTitle,val.createTime,val.messageContent)" :class="val.status==1?'':'active'">
+		        <h5>{{val.messageTitle}}</h5>
+		        <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{val.messageContent}}</p>
+		         <em>{{val.createTime}}</em>
+		    </a>
+		</div>
+	</div>
+<!--<div id="datePlugin"></div>-->
+<script src="../js/common.min.js"></script>
+<script src="../js/m.js"></script>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/queryLmessageAll",
+					async:false,
+					dataType:'json',
+					data:{
+						userId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						that.list=res.data
+					}
+				});
+			},
+			newdetail:function(id,title,time,content){
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/updateBystatus",
+					async:false,
+					dataType:'json',
+					data:{
+						userNewsId:id,
+						status:1
+					},
+					success:function(res){
+						if(res.status==200){
+							localStorage.setItem('newtitle',title)
+							localStorage.setItem('newtime',time)
+							localStorage.setItem('necontent',content)
+							window.location.href='award/award_detail.html'
+						}
+					}
+				});
+				
+			}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+{
+  "web/order/order_detail.html": {
+    "href": "web/order/order_detail.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js"
+    ],
+    "refer": [
+      "web/meau/my_trips.html"
+    ],
+    "priority": 0
+  },
+  "web/meau/my_trips.html": {
+    "href": "web/meau/my_trips.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/order/order_detail.html",
+      "web/index.html",
+      "web/grab.html"
+    ],
+    "priority": 0
+  },
+  "web/grab.html": {
+    "href": "web/grab.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/index.html",
+      "web/meau/my_trips.html"
+    ],
+    "priority": 0
+  },
+  "web/user/register_personal.html": {
+    "href": "web/user/register_personal.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/jquery.form.js",
+      "images/pic/1.jpg"
+    ],
+    "refer": [
+      "index.html"
+    ],
+    "priority": 0
+  },
+  "web/user/service.html": {
+    "href": "web/user/service.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/user/register.html": {
+    "href": "web/user/register.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/bmob-min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/user/register_personal.html",
+      "web/user/service.html",
+      "index.html"
+    ],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/bmob-min.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js",
+      "images/logo.jpg"
+    ],
+    "refer": [
+      "web/index.html",
+      "web/user/register.html"
+    ],
+    "priority": 0
+  },
+  "web/wallet/bill_query.html": {
+    "href": "web/wallet/bill_query.html",
+    "resources": [
+      "favicon.ico",
+      "css/swiper.min.css",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/wallet/withdraw_record.html": {
+    "href": "web/wallet/withdraw_record.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/wallet/withdraw_deposit.html": {
+    "href": "web/wallet/withdraw_deposit.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/wallet/withdraw_record.html"
+    ],
+    "priority": 0
+  },
+  "web/wallet/rule_withdraw.html": {
+    "href": "web/wallet/rule_withdraw.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/wallet/rule_description.html": {
+    "href": "web/wallet/rule_description.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/wallet/rule_withdraw.html"
+    ],
+    "priority": 0
+  },
+  "web/meau/my_wallet.html": {
+    "href": "web/meau/my_wallet.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js"
+    ],
+    "refer": [
+      "web/wallet/bill_query.html",
+      "web/wallet/withdraw_deposit.html",
+      "web/wallet/withdraw_record.html",
+      "web/wallet/rule_description.html"
+    ],
+    "priority": 0
+  },
+  "web/award/award_detail.html": {
+    "href": "web/award/award_detail.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/mes.html": {
+    "href": "web/mes.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/award/award_detail.html"
+    ],
+    "priority": 0
+  },
+  "web/state/review.html": {
+    "href": "web/state/review.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "index.html"
+    ],
+    "priority": 0
+  },
+  "web/user/add_car.html": {
+    "href": "web/user/add_car.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/jquery.form.js",
+      "images/pic/1.jpg"
+    ],
+    "refer": [
+      "web/state/review.html"
+    ],
+    "priority": 0
+  },
+  "web/meau/my_car.html": {
+    "href": "web/meau/my_car.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/user/add_car.html",
+      "web/index.html"
+    ],
+    "priority": 0
+  },
+  "web/meau/share.html": {
+    "href": "web/meau/share.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/meau/client_contact.html": {
+    "href": "web/meau/client_contact.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/appeal/appeal_succ.html": {
+    "href": "web/appeal/appeal_succ.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/index.html"
+    ],
+    "priority": 0
+  },
+  "web/appeal/order_appeal.html": {
+    "href": "web/appeal/order_appeal.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/jquery.form.js",
+      "images/img_cover.png"
+    ],
+    "refer": [
+      "web/appeal/appeal_succ.html"
+    ],
+    "priority": 0
+  },
+  "web/appeal/appeal_progess.html": {
+    "href": "web/appeal/appeal_progess.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/appeal/order_appeal.html"
+    ],
+    "priority": 0
+  },
+  "web/appeal/appeal_list.html": {
+    "href": "web/appeal/appeal_list.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js"
+    ],
+    "refer": [
+      "web/appeal/appeal_progess.html"
+    ],
+    "priority": 0
+  },
+  "web/appeal/feed_back.html": {
+    "href": "web/appeal/feed_back.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/appeal/user_about.html": {
+    "href": "web/appeal/user_about.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "web/meau/set.html": {
+    "href": "web/meau/set.html",
+    "resources": [
+      "favicon.ico",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "index.html",
+      "web/appeal/feed_back.html",
+      "web/meau/client_contact.html",
+      "web/appeal/user_about.html"
+    ],
+    "priority": 0
+  },
+  "web/mode/mode_check.html": {
+    "href": "web/mode/mode_check.html",
+    "resources": [
+      "favicon.ico",
+      "css/mobiscroll.css",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/common.min.js",
+      "js/mobiscroll.js",
+      "js/m.js"
+    ],
+    "refer": [
+      "web/index.html"
+    ],
+    "priority": 0
+  },
+  "web/index.html": {
+    "href": "web/index.html",
+    "resources": [
+      "favicon.ico",
+      "css/sidenav.min.css",
+      "css/m.debug.css",
+      "js/flexible.js",
+      "js/jquery.min.js",
+      "js/sidenav.min.js",
+      "images/driver_icon.png"
+    ],
+    "refer": [
+      "web/grab.html",
+      "index.html",
+      "web/meau/my_wallet.html",
+      "web/meau/my_trips.html",
+      "web/mes.html",
+      "web/meau/my_car.html",
+      "web/meau/share.html",
+      "web/meau/client_contact.html",
+      "web/appeal/appeal_list.html",
+      "web/meau/set.html",
+      "web/mode/mode_check.html"
+    ],
+    "priority": 0
+  }
+}

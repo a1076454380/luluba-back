@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>投诉详情-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<style type="text/css">
+	.lv_su_my a{position: fixed;bottom: .222rem;}
+</style>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>投诉详情</h5>
+		</header>
+		<section class="appeal1 appeal_pro">
+		    <div class="appeal_tit">
+		        <div class="tit">订单编号:{{list.orderId}}
+		        	<span class="pro_statue" v-show="list.complianStatus=0">投诉中</span>
+		        	<span class="pro_statue" v-show="list.complianStatus=1">申诉完成</span>
+		        </div>
+		        <div class="appeal_t">投诉人姓名：{{list.driverName}}</div>
+		        <div class="appeal_t">投诉人电话：{{list.driverPhone}}</div>
+		        <div class="appeal_t">投诉时间：：{{list.driverName}}</div>
+		    </div>
+		    <div class="appeal_progess box-size">
+		        <a class="icon iconfont icon-arrow-right">投诉内容</a>
+		        <p>{{list.complainReason}}</p>
+		    </div>
+		</section>
+		<!--如果申诉完成了 那么这个按钮就不显示-->
+		<div class="lv_su_my box-size">
+		    <a href="javascript:void(0)" class="js_share" @click="opennew">我要申诉</a>
+		</div>
+	</div>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"get",
+					url:localStorage.getItem('myurl')+"/queryComplainByComplaintId",
+					async:false,
+					dataType:'json',
+					data:{
+						orderId:localStorage.getItem('orderId')
+					},
+					success:function(res){
+						that.list=res.data
+					}
+				});
+			},
+			opennew:function(){
+				localStorage.setItem('orderid',this.list.orderId)
+				localStorage.setItem('comname',this.list.driverName)
+				localStorage.setItem('comphone',this.list.driverPhone)
+				localStorage.setItem('userId',this.list.userId)
+				window.location.href='order_appeal.html'
+			}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="keywords" content="XXX">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="applicable-device" content="mobile">
+    <title>钱包-陆陆捌车主</title>
+    <link href="../../favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="../../css/m.debug.css">
+    <script src="../../js/flexible.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+</head>
+<body style="background-color: #f2f3f4;">
+	<div id="app">
+		<header class="header">
+		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+		    <h5>钱包</h5>
+		</header>
+		<section class="my_wallet">
+		    <div class="my_money">
+		        <a href="../wallet/bill_query.html" class="wallet_link icon iconfont icon-arrow-right">
+		            余额：<span><em>{{list.money}}</em><em v-show="list.money==undefined">0</em>元</span>
+		        </a>
+		        <a href="../wallet/withdraw_deposit.html" class="js_withdraw ">提现</a>
+		        <p class="clearfix box-size">
+		            <a href="../wallet/withdraw_record.html">提现记录</a>
+		            <a href="../wallet/rule_description.html">规则说明</a>
+		        </p>
+		    </div>
+		</section>
+	</div>
+<script type="text/javascript">
+	var myvue=new Vue({
+		el:'#app',
+		data:{
+			list:[]
+		},
+		methods:{
+			myajax:function(){
+				var that=this
+				$.ajax({
+					type:"post",
+					url:localStorage.getItem('myurl')+"/income/queryByDriverPocket",
+					async:false,
+					dataType:'json',
+					data:{
+						driverId:localStorage.getItem('dirveid')
+					},
+					success:function(res){
+						console.log(res)
+						that.list=res.data
+						localStorage.setItem('allmoney',res.data.money)
+					}
+				});
+			}
+		},
+		mounted:function(){
+			this.myajax()
+		}
+	})
+</script>
+</body>
+</html>
