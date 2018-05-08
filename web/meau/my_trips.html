@@ -31,8 +31,8 @@
 		<ul class="list_con box-size with_record" >
 		    <li v-for="val in list">
 		        <a href="javascript:void(0)" @click="opendetail(val.orderId)">
-		            <p>{{val.orderId}}</p>
-		            <span>{{val.createTime}}</span>
+			        <p>{{val.appointmentStatus | yyue}}</p>
+			        <span v-show="val.appointmentStatus!=4&&val.appointmentStatus!=6">{{val.createTime}}</span><span v-show="val.appointmentStatus==4||val.appointmentStatus==6">{{val.orderAppointment}}</span>
 		        </a>
 		    </li>
 		</ul>
@@ -69,7 +69,16 @@
 		},
 		mounted:function(){
 			this.myajax()
-		}
+		},
+				filters: {
+					yyue: function(value) {
+						if(value == 4 || value == 6) {
+							return '预约单'
+						} else {
+							return '普通单'
+						}
+					}
+				}
 	})
 </script>
 </body>
