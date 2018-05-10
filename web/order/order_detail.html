@@ -43,7 +43,7 @@
 		                <p><em>是否同意拼车:</em>
 		                	<a class="phone">{{list.appointmentStatus | pin}}</a>
 		                </p>
-		                <p><em>选择车型:</em>{{list.carType | mytype}}</p>
+		                <p><em>选择车型:</em>{{list.carType}}</p>
 		                <p><em>货重:</em>{{list.orderWeight}}吨</p>
 		                <p><em>额外需求:</em>
 		                	{{list.orderAddition}}
@@ -120,28 +120,6 @@
 			}
 		},
 		filters:{
-			mytype:function(value){
-				switch (value){
-					case '1':
-					return '小面包车'
-						break;
-						case '2':
-					return '中面包车'
-						break;
-						case '3':
-					return '小货车'
-						break;
-						case '4':
-					return '中型平板'
-						break;
-						case '5':
-					return '中型厢货'
-						break;
-					default:
-					return '不限'
-						break;
-				}
-			},
 			yyue:function(value){
 				if(value==4||value==6){
 					return '预约单'

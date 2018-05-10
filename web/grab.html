@@ -25,13 +25,10 @@
 			</header>
 			<section class="grab">
 				<div class="top">
-					<h6 v-show="list.appointmentStatus==5">普通单</h6>
-					<h6 v-show="list.appointmentStatus==6">普通单</h6>
-					<h6 v-show="list.appointmentStatus==4">预约单</h6>
-					<h6 v-show="list.appointmentStatus==7">预约单</h6>
-					<div class="time">
-						{{list.createTime}}发起订单
-					</div>
+					<h6>{{list.appointmentStatus | yyue}}</h6>
+			        <div class="time">
+			           {{list.createTime}}发起订单
+			        </div>
 					<div class="time" v-show="list.appointmentStatus==4">
 						{{list.orderAppointment}}预约用车
 					</div>
@@ -55,8 +52,8 @@
 							</p>
 							<p><em>预约时间:</em>{{list.orderAppointment}}</p>
 							<p><em>选择车型:</em>{{cartype}}</p>
-							<p><em>货重:</em>{{list.orderWeight}}KG</p>
-							<p><em>额外需求:</em>{{list.orderAddition | myfil}}</p>
+							<p><em>货重:</em>{{list.orderWeight}}吨</p>
+							<p><em>额外需求:</em>{{list.orderAddition}}</p>
 							<p><em>订单备注:</em>{{list.orderRemark}}</p>
 							<p><em>订单价格:</em>{{list.price}}</p>
 						</div>
@@ -137,6 +134,13 @@
 						myvle=myvle.replace('d','拍照回单')
 						myvle=myvle.replace('e','纸质回单')
 						return myvle
+					},
+					yyue:function(value){
+						if(value==4||value==6){
+							return '预约单'
+						}else{
+							return '普通单'
+						}
 					}
 				}
 			})

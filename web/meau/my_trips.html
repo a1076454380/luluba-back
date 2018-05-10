@@ -1,75 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="XXX">
-    <meta name="keywords" content="XXX">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content=" black "/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
-    <meta name="applicable-device" content="mobile">
-    <title>我的行程-陆陆捌车主</title>
-    <link href="../../favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="../../css/m.debug.css">
-    <script src="../../js/flexible.js"></script>
-    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
-</head>
-<style type="text/css">
-	.box-size p{width: 60%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-	.box-size span{width: 40%;white-space: nowrap;overflow: hidden;}
-</style>
-<body style="background-color: #f2f3f4;">
-	<div id="app">
-		<header class="header">
-		    <a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
-		    <h5>我的行程</h5>
-		</header>
-		
-		<ul class="list_con box-size with_record" >
-		    <li v-for="val in list">
-		        <a href="javascript:void(0)" @click="opendetail(val.orderId)">
-			        <p>{{val.appointmentStatus | yyue}}</p>
-			        <span v-show="val.appointmentStatus!=4&&val.appointmentStatus!=6">{{val.createTime}}</span><span v-show="val.appointmentStatus==4||val.appointmentStatus==6">{{val.orderAppointment}}</span>
-		        </a>
-		    </li>
-		</ul>
-	</div>
-<script src="../../js/common.min.js"></script>
-<script src="../../js/m.js"></script>
-<script type="text/javascript">
-	var myvue=new Vue({
-		el:'#app',
-		data:{
-			list:[]
-		},
-		methods:{
-			myajax:function(){
-				var that=this
-				$.ajax({
-					type:"post",
-					url:localStorage.getItem('myurl')+"/travel/qyeryAllByDriverId",
-					async:false,
-					dataType:'json',
-					data:{
-						driverId:localStorage.getItem('dirveid')
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="XXX">
+		<meta name="keywords" content="XXX">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-status-bar-style" content=" black " />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="applicable-device" content="mobile">
+		<title>我的行程-陆陆捌车主</title>
+		<link href="../../favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="../../css/m.debug.css">
+		<script src="../../js/flexible.js"></script>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+	</head>
+
+	<body style="background-color: #f2f3f4;">
+		<div id="app">
+			<header class="header">
+				<a class='icon iconfont icon-arrow_right js_back' href="javascript:history.back();"></a>
+				<h5>我的行程</h5>
+			</header>
+
+			<ul class="order_list box-size clearfix order_his">
+				<li v-for="val in list" @click="opendetail(val.orderId)">
+						<p>
+							订单编号:{{val.orderId}}
+							<span class="flags" v-show='val.orderStatus==0'>等待接单&gt;</span>
+							<span class="flags" v-show='val.orderStatus==1'>进行中&gt;</span>
+							<span class="flags" v-show='val.orderStatus==2'>已完成&gt;</span>
+							<span class="flags" v-show='val.orderStatus==3'>投诉中&gt;</span>
+						</p>
+						<p>{{val.appointmentStatus | yyue}} <span v-show="val.appointmentStatus!=4&&val.appointmentStatus!=6">{{val.createTime}}</span><span v-show="val.appointmentStatus==4||val.appointmentStatus==6">{{val.orderAppointment}}</span></p>
+						<p>{{val.orderStart}}</p>
+						<p>{{val.orderEnd}}</p>
+				</li>
+			</ul>
+		</div>
+		<script src="../../js/common.min.js"></script>
+		<script src="../../js/m.js"></script>
+		<script type="text/javascript">
+			var myvue = new Vue({
+				el: '#app',
+				data: {
+					list: []
+				},
+				methods: {
+					myajax: function() {
+						var that = this
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/travel/qyeryAllByDriverId",
+							async: false,
+							dataType: 'json',
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							success: function(res) {
+								that.list = res.data
+								console.log(res)
+							}
+						});
 					},
-					success:function(res){
-						that.list=res.data
-						console.log(res)
+					opendetail: function(id) {
+						localStorage.setItem('orderId', id)
+						window.location.href = '../order/order_detail.html'
 					}
-				});
-			},
-			opendetail:function(id){
-				localStorage.setItem('orderId',id)
-				window.location.href='../order/order_detail.html'
-			}
-		},
-		mounted:function(){
-			this.myajax()
-		},
+				},
+				mounted: function() {
+					this.myajax()
+				},
 				filters: {
 					yyue: function(value) {
 						if(value == 4 || value == 6) {
@@ -79,7 +83,8 @@
 						}
 					}
 				}
-	})
-</script>
-</body>
+			})
+		</script>
+	</body>
+
 </html>
