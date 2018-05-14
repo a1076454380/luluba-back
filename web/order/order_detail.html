@@ -27,8 +27,11 @@
 		    <div class="top">
 		        <h6>{{list.appointmentStatus | yyue}}</h6>
 		        <div class="time">
-		           {{list.createTime}}用车
-		        </div>
+						创建时间{{list.createTime}}
+					</div>
+					<div class="time" style="margin-top: 10px;" v-show="list.appointmentStatus==4||list.appointmentStatus==6">
+						预约时间{{list.orderAppointment}}
+					</div>
 		    </div>
 		    <ul class="order_list box-size clearfix">
 		        <li>
@@ -43,7 +46,7 @@
 		                <p><em>是否同意拼车:</em>
 		                	<a class="phone">{{list.appointmentStatus | pin}}</a>
 		                </p>
-		                <p><em>选择车型:</em>{{list.carType}}</p>
+		                <p><em>选择车型:</em>{{list.carouselName}}</p>
 		                <p><em>货重:</em>{{list.orderWeight}}吨</p>
 		                <p><em>额外需求:</em>
 		                	{{list.orderAddition}}

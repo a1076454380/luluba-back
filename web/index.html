@@ -113,7 +113,7 @@
 					</p>
 					<div class="js_tips box-size js_tips1" v-show='mylist.length>0'>
 						<a href="javascript:void(0)" class="box-size" v-for="val in mylist" @click="orderdetail(val.orderId)">
-							<h5>未接订单</h5>
+							<h5>未接订单<span>{{list.appointmentStatus | yyue}}</span></h5>
 							<span class="box-big">
 		           			<span class="box-title">
 		           				起点:
@@ -331,7 +331,7 @@
 									} else {
 										that.mylist = []
 									}
-
+									
 									function plusReady() {
 										plus.nativeUI.closeWaiting();
 									}
@@ -455,6 +455,15 @@
 						});
 					}, 60000)
 				},
+				filters:{
+					yyue:function(value){
+						if(value==4||value==6){
+							return '预约单'
+						}else{
+							return '普通单'
+						}
+					}
+				}
 			})
 		</script>
 	</body>
