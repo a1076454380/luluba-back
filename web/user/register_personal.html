@@ -196,7 +196,9 @@
 				})
 				$('.sex_sel').on('click', 'input[name="carType"]', function() {
 					$('.sex_layer').hide()
-					$('#cartype').html($('.cartype').eq($('input[name="carType"]').index(this)).html())
+				})
+				$('.sex_sel').on('click', 'p', function() {
+					$('#cartype').html($('.cartype').eq($(this).children('label').html())
 				})
 				$('form').attr('action', localStorage.getItem('myurl') + '/insertSelectiveBydriver')
 				$('.js_submit').click(function() {

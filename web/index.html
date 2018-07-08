@@ -332,7 +332,7 @@
 									} else {
 										that.mylist = []
 									}
-									
+
 									function plusReady() {
 										plus.nativeUI.closeWaiting();
 									}
@@ -350,7 +350,6 @@
 					}
 				},
 				mounted: function() {
-					
 					localStorage.setItem('myurl', 'http://39.107.70.18/Transportation')
 					this.myajax()
 					this.order()
@@ -359,108 +358,113 @@
 					} else if(localStorage.getItem('tingtype') == 'yu') {
 						this.typetext = '预约'
 					}
-					if(localStorage.getItem('driverPhone')!=null){
+					if(localStorage.getItem('driverPhone') != null) {
 						$.ajax({
 							type: "get",
 							url: localStorage.getItem('myurl') + "/queryLoginDriverByPhone",
 							async: false,
 							dataType: 'json',
 							data: {
-								driverPhone:localStorage.getItem('driverPhone')
+								driverPhone: localStorage.getItem('driverPhone')
 							},
 							success: function(res) {
-								console.log(res)
 								if(res.status != 200) {
 									alert('您的用户已被删除！！')
 									localStorage.clear()
-									window.location.href='../index.html'
+									window.location.href = '../index.html'
 								}
 							}
 						});
 					}
-					var wgtVer = null;
-					//					获取当前应用版本
-					function plusReady() {
-						plus.nativeUI.showWaiting("正在加载数据");
-						plus.runtime.getProperty(plus.runtime.appid, function(inf) {
-							wgtVer = inf.version;
-							$.ajax({
-								type: "get",
-								url: localStorage.getItem('myurl') + "/queryByversion",
-								dataType: 'json',
-								async: false,
-								success: function(res) {
-									plus.nativeUI.closeWaiting()
-									if(res.data.versionDriverCode != wgtVer) {
-										// 弹出提示信息对话框
-										plus.nativeUI.confirm("有新版本发布啦,是否立即下载??", function(e) {
-											if(e.index == 0) {
-												plus.runtime.openURL(res.data.versionAndroidDriverUploadUrl)
-											}else{
-												if(localStorage.getItem('dirveid') == null) {
-													window.location.href = '../index.html'
-													return;
-												}
-											}
-										});
-									}else{
+					$.ajax({
+						type: "get",
+						url: localStorage.getItem('myurl') + "/queryByversion",
+						dataType: 'json',
+						success: function(res) {
+							var wgtVer = res.data.versionDriverCode
+							function plusReady() {
+								plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+									wgtVer = inf.version;
+								});
+							}
+							if(window.plus) {
+								plusReady();
+							} else {
+								document.addEventListener('plusready', plusReady, false);
+							}
+							if(res.data.versionDriverCode != wgtVer) {
+								plus.nativeUI.confirm("有新版本发布啦,是否立即下载??", function(e) {
+									if(e.index == 0) {
+										plus.runtime.openURL(res.data.versionAndroidDriverUploadUrl)
+									} else {
 										if(localStorage.getItem('dirveid') == null) {
-											window.location.href = '../index.html'
-											return;
+											setTimeout(function() {
+												window.location.href = '../index.html'
+												return false;
+											}, 500)
+
 										}
 									}
-								}
-							})
-						});
-					}
-					if(window.plus) {
-						plusReady();
-					} else {
-						document.addEventListener('plusready', plusReady, false);
-					}
-					setInterval(function() {
-						$.ajax({
-							type: "post",
-							url: localStorage.getItem('myurl') + "/car/queryAllByDriverIdAndStatus",
-							async: true,
-							data: {
-								driverId: localStorage.getItem('dirveid')
-							},
-							dataType: 'json',
-							success: function(res) {
-								if(res.data.length > 0) {
-									// 扩展API加载完毕，现在可以正常调用扩展API
-									// 获取客户端标识信息
-									var mydata = res.data[0]
-									$.ajax({
-										type: "post",
-										url: localStorage.getItem('myurl') + "/car/updateByStatusAndCarId",
-										async: true,
-										dataType: 'json',
-										data: {
-											carId: mydata
-										},
-										success: function(res) {
-											document.addEventListener("plusready", function() {
-												var info = plus.push.getClientInfo();
-												plus.push.createMessage('您的车辆审核已通过,请点击查看!');
-												// 添加监听从系统消息中心点击消息启动事件
-												plus.push.addEventListener("click", function(msg) {
-													window.location.href = 'meau/my_car.html'
-												}, false);
-											}, false);
-										}
-									});
+								});
+							} else {
+								if(localStorage.getItem('dirveid') == null) {
+									setTimeout(function() {
+										window.location.href = '../index.html'
+										return false;
+									}, 500)
 								}
 							}
-						});
-					}, 60000)
+						},
+						error: function(err) {
+							if(localStorage.getItem('dirveid') == null) {
+								setTimeout(function() {
+									window.location.href = '../index.html'
+									return false;
+								}, 500)
+							}
+						}
+					})
+//					setInterval(function() {
+//						$.ajax({
+//							type: "post",
+//							url: localStorage.getItem('myurl') + "/car/queryAllByDriverIdAndStatus",
+//							async: false,
+//							data: {
+//								driverId: localStorage.getItem('dirveid')
+//							},
+//							dataType: 'json',
+//							success: function(res) {
+//								if(res.data.length > 0) {
+//									var mydata = res.data[0]
+//									$.ajax({
+//										type: "post",
+//										url: localStorage.getItem('myurl') + "/car/updateByStatusAndCarId",
+//										async: true,
+//										dataType: 'json',
+//										data: {
+//											carId: mydata
+//										},
+//										success: function(res) {
+//											document.addEventListener("plusready", function() {
+//												var info = plus.push.getClientInfo();
+//												plus.push.createMessage('您的车辆审核已通过,请点击查看!');
+//												// 添加监听从系统消息中心点击消息启动事件
+//												plus.push.addEventListener("click", function(msg) {
+//													window.location.href = 'meau/my_car.html'
+//												}, false);
+//											}, false);
+//										}
+//									});
+//								}
+//							}
+//						});
+//					}, 60000)
 				},
-				filters:{
-					yyue:function(value){
-						if(value==4||value==6){
+				filters: {
+					yyue: function(value) {
+						if(value == 4 || value == 6) {
 							return '预约单'
-						}else{
+						} else {
 							return '普通单'
 						}
 					}

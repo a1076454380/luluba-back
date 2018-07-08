@@ -17,7 +17,7 @@
 		<script src="js/flexible.js"></script>
 		<script src="js/bmob-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body style="background-color:#fff;">
@@ -97,12 +97,12 @@
 						if(this.state == 60 || this.state == '获取验证码') {
 							this.code = Math.floor(Math.random() * 9000) + 1000;
 							var that = this
-							if(this.state != '验证码已发送') {
-								Bmob.initialize("f7174458eab2fe581941c6a4aa56a0b7", "739d8351ef20781bb364acf69dee4772");
-								Bmob.Sms.requestSms({
-									"mobilePhoneNumber": that.phone,
-									"content": "您的验证码是：" + that.code + ", 有效期是10分钟。"
-								}).then(function(obj) {
+//							if(this.state != '验证码已发送') {
+//								Bmob.initialize("f7174458eab2fe581941c6a4aa56a0b7", "739d8351ef20781bb364acf69dee4772");
+//								Bmob.Sms.requestSms({
+//									"mobilePhoneNumber": that.phone,
+//									"content": "您的验证码是：" + that.code + ", 有效期是10分钟。"
+//								}).then(function(obj) {
 									that.state = 60
 									that.pwdshow = !that.pwdshow
 									setInterval(function() {
@@ -113,46 +113,46 @@
 										}
 									}, 1000)
 									that.phone02 = that.phone
-								}, function(err) {
-									console.log(JSON.stringify(err))
-									if(err.code == 10010) {
-										alert('验证码已达上限，请稍后重试')
-									} else if(err.code == 301) {
-										alert('手机号格式错误')
-									} else {
-										alert('错误信息'+err.message)
-									}
-								});
-							}
+//								}, function(err) {
+//									if(err.code == 10010) {
+//										alert('验证码已达上限，请稍后重试')
+//									} else if(err.code == 301) {
+//										alert('手机号格式错误')
+//									} else {
+//										alert('错误信息' + err.message)
+//									}
+//								});
+//							}
 						}
 					},
+					//					15162274025
 					myajax: function() {
 						var that = this
 						if(this.phone != '') {
 							if(this.pwd != '') {
-								if(this.code == Math.floor(this.pwd)) {
-									$.ajax({
-										type: "get",
-										url: localStorage.getItem('myurl') + "/queryLoginDriverByPhone",
-										async: false,
-										dataType: 'json',
-										data: {
-											driverPhone: that.phone
-										},
-										success: function(res) {
-											if(res.status == '200') {
-												localStorage.setItem('dirveid', res.data.driverId)
-												localStorage.setItem('driverName', res.data.driverName)
-												localStorage.setItem('driverPhone', res.data.driverPhone)
-												window.location.href = 'web/index.html'
-											} else {
-												alert(res.msg)
-											}
+								//								if(this.code == Math.floor(this.pwd)) {
+								$.ajax({
+									type: "get",
+									url: localStorage.getItem('myurl') + "/queryLoginDriverByPhone",
+									async: false,
+									dataType: 'json',
+									data: {
+										driverPhone: that.phone
+									},
+									success: function(res) {
+										if(res.status == '200') {
+											localStorage.setItem('dirveid', res.data.driverId)
+											localStorage.setItem('driverName', res.data.driverName)
+											localStorage.setItem('driverPhone', res.data.driverPhone)
+											window.location.href = 'web/index.html'
+										} else {
+											alert(res.msg)
 										}
-									});
-								} else {
-									alert('验证码错误')
-								}
+									}
+								});
+								//								} else {
+								//									alert('验证码错误')
+								//								}
 							} else {
 								alert('验证码不能为空')
 							}
