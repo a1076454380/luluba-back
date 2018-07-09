@@ -65,7 +65,6 @@
 							<a href="meau/my_wallet.html" class="icon iconfont icon-qianbao">我的钱包</a>
 							<a href="meau/my_trips.html" class="icon iconfont icon-xingcheng">我的行程</a>
 						</div>
-
 						<ul class="meau_list">
 							<li>
 								<a href="meau/my_car.html"><i class="icon iconfont icon-cheliang"></i>我的车辆</a>
@@ -184,6 +183,7 @@
 						this.showbo = !this.showbo
 					},
 					go: function() {
+						console.log('go')
 						var that = this
 						$.ajax({
 							type: "get",
@@ -195,6 +195,13 @@
 							},
 							success: function(res) {
 								if(res.data.length > 0) {
+									console.log(JSON.stringify(res))
+									plus.push.clear();
+									plus.push.createMessage('您有新的订单需要处理！');
+									plus.push.addEventListener("click", function(msg) {
+										localStorage.setItem('ordedid', res.data[0].orderId)
+										window.location.href = 'grab.html'
+									}, false);
 									var audio = document.getElementById("bgMusic");
 									//播放(继续播放)
 									audio.play();
@@ -205,12 +212,13 @@
 											window.clearInterval(is_playFinish)
 										}
 									}, 10)
+									
 								}
 							}
 						});
 						that.mygo = setTimeout(function() {
 							that.go()
-						}, 500)
+						}, 1000)
 					},
 					back: function() {
 						clearTimeout(this.mygo)
@@ -376,12 +384,17 @@
 							}
 						});
 					}
+					if(localStorage.getItem('dirveid') == null) {
+						window.location.href = '../index.html'
+						return false;
+					}
 					$.ajax({
 						type: "get",
 						url: localStorage.getItem('myurl') + "/queryByversion",
 						dataType: 'json',
 						success: function(res) {
 							var wgtVer = res.data.versionDriverCode
+
 							function plusReady() {
 								plus.runtime.getProperty(plus.runtime.appid, function(inf) {
 									wgtVer = inf.version;
@@ -396,24 +409,9 @@
 								plus.nativeUI.confirm("有新版本发布啦,是否立即下载??", function(e) {
 									if(e.index == 0) {
 										plus.runtime.openURL(res.data.versionAndroidDriverUploadUrl)
-									} else {
-										if(localStorage.getItem('dirveid') == null) {
-											setTimeout(function() {
-												window.location.href = '../index.html'
-												return false;
-											}, 500)
-
-										}
 									}
 								});
-							} else {
-								if(localStorage.getItem('dirveid') == null) {
-									setTimeout(function() {
-										window.location.href = '../index.html'
-										return false;
-									}, 500)
-								}
-							}
+							} 
 						},
 						error: function(err) {
 							if(localStorage.getItem('dirveid') == null) {
@@ -424,41 +422,41 @@
 							}
 						}
 					})
-//					setInterval(function() {
-//						$.ajax({
-//							type: "post",
-//							url: localStorage.getItem('myurl') + "/car/queryAllByDriverIdAndStatus",
-//							async: false,
-//							data: {
-//								driverId: localStorage.getItem('dirveid')
-//							},
-//							dataType: 'json',
-//							success: function(res) {
-//								if(res.data.length > 0) {
-//									var mydata = res.data[0]
-//									$.ajax({
-//										type: "post",
-//										url: localStorage.getItem('myurl') + "/car/updateByStatusAndCarId",
-//										async: true,
-//										dataType: 'json',
-//										data: {
-//											carId: mydata
-//										},
-//										success: function(res) {
-//											document.addEventListener("plusready", function() {
-//												var info = plus.push.getClientInfo();
-//												plus.push.createMessage('您的车辆审核已通过,请点击查看!');
-//												// 添加监听从系统消息中心点击消息启动事件
-//												plus.push.addEventListener("click", function(msg) {
-//													window.location.href = 'meau/my_car.html'
-//												}, false);
-//											}, false);
-//										}
-//									});
-//								}
-//							}
-//						});
-//					}, 60000)
+					setInterval(function() {
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/car/queryAllByDriverIdAndStatus",
+							async: false,
+							data: {
+								driverId: localStorage.getItem('dirveid')
+							},
+							dataType: 'json',
+							success: function(res) {
+								if(res.data.length > 0) {
+									var mydata = res.data[0]
+									$.ajax({
+										type: "post",
+										url: localStorage.getItem('myurl') + "/car/updateByStatusAndCarId",
+										async: true,
+										dataType: 'json',
+										data: {
+											carId: mydata
+										},
+										success: function(res) {
+											document.addEventListener("plusready", function() {
+												var info = plus.push.getClientInfo();
+												plus.push.createMessage('您的车辆审核已通过,请点击查看!');
+												// 添加监听从系统消息中心点击消息启动事件
+												plus.push.addEventListener("click", function(msg) {
+													window.location.href = 'meau/my_car.html'
+												}, false);
+											}, false);
+										}
+									});
+								}
+							}
+						});
+					}, 60000)
 				},
 				filters: {
 					yyue: function(value) {
