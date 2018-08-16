@@ -29,7 +29,7 @@ input::-webkit-input-placeholder{color: #8d8d8d}
 textarea::-webkit-input-placeholder{color: #8d8d8d}
 html, body{position: relative;}
 .clearfix:before, .clearfix:after{content: " ";display: table;clear: both}
-body{max-width: 750px;margin: 0 auto!important;background: #fff;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;padding: 0;}
+body{margin: 0 auto!important;background: #fff;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;padding: 0;}
 .box-size{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 .fl{float: left;}
 .fr{float: right;}
