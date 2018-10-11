@@ -1,0 +1,71 @@
+[2018-10-06 10:34:59 CST] <Thread-9>  INFO: Logging to file: F:\word\luluba-back\unpackage\release\H547A4854_1006023024.ipa_1810061034.log
+[2018-10-06 10:34:59 CST] <Thread-9>  INFO: Logging configured successfully.
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: iTMSTransporter : iTunes Store Transporter [1.9.8]
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: OS identifier: Windows 10 10.0 (amd64); jvm=25.171-b11; jre=1.8.0_171-b11
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Memory: [JVM] 60M free, 123M total, 1794M max [System] (Physical) 2938M free, 8069M total (Swap) 4498M free, 13701M total
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Upload mode selected.
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Examining the package at: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Ensuring that package has well formed metadata file...
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Gathering the list of valid files from the package ...
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Finished gathering the list of valid files from the package.
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Verify progress: Analyzing metadata (Step 0/?)
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Performing authentication of package 1401956520.itmsp ...
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: Verify progress: Analyzing metadata (Step 1/2)
+[2018-10-06 10:35:00 CST] <Thread-9>  INFO: id = 20181006103500-431
+[2018-10-06 10:35:01 CST] <Thread-9>  INFO: id = 20181006103501-983
+[2018-10-06 10:35:05 CST] <Thread-9>  INFO: The list of files requested for upload by Apple is: [metadata.xml, 1401956520.ipa].  These are the files that will be uploaded.
+[2018-10-06 10:35:05 CST] <Thread-9>  INFO: Starting media analysis of assets
+[2018-10-06 10:35:05 CST] <Thread-9>  INFO: Verify progress: Adding asset to analyze: 1401956520.ipa (Step 2/3)
+[2018-10-06 10:35:05 CST] <Thread-9>  INFO: Asset media analysis has completed
+[2018-10-06 10:35:05 CST] <Thread-9>  INFO: id = 20181006103505-941
+[2018-10-06 10:35:23 CST] <Thread-9>  INFO: Verify progress: Validating assets (Step 3/3)
+[2018-10-06 10:35:23 CST] <Thread-9>  INFO: Verify progress: Validating assets (Step 4/3)
+[2018-10-06 10:35:23 CST] <Thread-9>  INFO: id = 20181006103523-252
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: The list of files requested for upload by Apple is: [metadata.xml, 1401956520.ipa].  These are the files that will be uploaded.
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Done performing authentication.
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: The asset replacement verification check is disabled.
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Checking the file size of the files: [1401956520.ipa]
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Done checking the file sizes.
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Checking the md5 checksum of the files: [1401956520.ipa]
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Done checking the md5 checksum.
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Preparing to upload package 1401956520.itmsp ...
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Starting to upload the package's files (1401956520.itmsp) ...
+[2018-10-06 10:35:39 CST] <Thread-9>  INFO: Attempting to connect to Apple's webDAV...
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Successfully connected to Apple's webDAV.
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Attempting to create the package's folder on Apple's webDAV: /6/ZHB85H39RF/uploading/1401956520-20181005193532-853.itmsp/
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Successfully created/set the package's folder on Apple's webDAV.
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Determining which files should be uploaded ...
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Finished determining which files should be uploaded.
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Computing total size of files to upload ...
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Done computing total size of files to upload.
+[2018-10-06 10:35:41 CST] <Thread-9>  INFO: Starting upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\1401956520.ipa ...
+[2018-10-06 10:36:09 CST] <Thread-9>  INFO:      File: 1401956520.ipa 10485760/12846631, 81% completed
+[2018-10-06 10:36:14 CST] <Thread-9>  INFO:      File: 1401956520.ipa 12846631/12846631, 100% completed
+[2018-10-06 10:36:14 CST] <Thread-9>  INFO:   Successfully uploaded file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\1401956520.ipa
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Package upload progress: 99% completed
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Finished upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\1401956520.ipa.
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Starting upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\metadata.xml ...
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO:      File: metadata.xml 525/525, 100% completed
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO:   Successfully uploaded file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\metadata.xml
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Package upload progress: 100% completed
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Finished upload of file: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp\metadata.xml.
+[2018-10-06 10:36:15 CST] <Thread-9>  INFO: Gathering list of uploaded files from Apple's webDAV...
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Done gathering list of uploaded files from Apple's webDAV...
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Checking if any encryption/compression files are outdated locally ...
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Finished checking if any encryption/compression files are outdated locally.
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Confirming that the previously uploaded files were uploaded correctly ...
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Finished confirming that the previously uploaded files were uploaded correctly.
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Determining which files were not uploaded ...
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Finished determining which files were not uploaded.
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: Done performing upload.
+[2018-10-06 10:36:16 CST] <Thread-9>  INFO: id = 20181006103616-975
+[2018-10-06 10:36:18 CST] <Thread-9>  INFO: Done performing uploadDone notification to Apple.
+[2018-10-06 10:36:18 CST] <Thread-9>  INFO: The package: C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp has been successfully uploaded.
+[2018-10-06 10:36:18 CST] <Thread-9>  INFO: Verify progress: Operation completed (Step 3/3)
+
+
+
+Package Summary:
+ 
+1 packages were uploaded successfully:
+	C:\Users\Shinelon\AppData\Local\Temp\au\itmsp\1401956520.itmsp
